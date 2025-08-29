@@ -31,7 +31,7 @@ This site was built to showcase our **team, vision, and creativity** during the 
 Meet the brains behind **BlueMoon**:
 
 - **Alifo Johnson Emeka** – Team Lead  
-- **Chukwuma Blessing Chidinmma** – Co-Team Lead  
+- **Chukwuma Blessing Chidinma** – Co-Team Lead  
 - **Obiakor Macben Chidiebere** – Backend Developer  
 - **Tochukwu Nwosa** – Frontend Developer  
 - **Odionyekachukwu Kaosiso** – [Role TBD]  
@@ -60,7 +60,7 @@ For questions, feedback, or collaborations:
 
 🐦 Twitter: @team__bluemoon
 
-💬 Github: eam-bluemoon
+💬 Github: Team-bluemoon
 
 ---
 
