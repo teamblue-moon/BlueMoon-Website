@@ -1,9 +1,9 @@
-The is a website for Blue Moon, for the upcoming Starknet Hackathon
+The is a website for BlueMoon, for the upcoming Starknet Hackathon
 
 # 🌙 BlueMoon – Hackathon Website
 
 Welcome to **BlueMoon**, our official hackathon project website!  
-This site was built to showcase our **team, vision, and creativity** during the [Hackathon Name/Year]. It combines **modern design, interactivity, and storytelling** to give visitors a unique experience.
+This site was built to showcase our **team, vision, and creativity** during the Starket Hackthon 2025. It combines **modern design, interactivity, and storytelling** to give visitors a unique experience.
 
 ---
 
@@ -56,7 +56,7 @@ cd bluemoon-hackathon
 
 For questions, feedback, or collaborations:
 
-📧 Email: teambluemoon.co
+📧 Email: teambluemoon.co@gmail.com
 
 🐦 Twitter: @team__bluemoon
 
