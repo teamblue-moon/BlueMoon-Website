@@ -1,142 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlueMoon</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/Blue moon ico.png" >
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="assets/Blue moonS.svg" alt="BlueMoon Logo">
-                <span>Blue</span> Moon
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#team">Team</a></li>
-            </ul>
-            <div class="nav-actions">
-                <button id="themeToggle" aria-label="Toggle Dark/Light Mode">🌙</button>
-                <div class="hamburger" id="hamburger">☰</div>
-            </div>
-        </nav>
+      <nav class="navbar">
+        <div class="logo">
+          <img src="assets/Blue moonS.svg" alt="BlueMoon Logo" />
+          <span>Blue</span> Moon
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#team">Team</a></li>
+        </ul>
+        <div class="nav-actions">
+          
+          <div class="hamburger" id="hamburger">☰</div>
+        </div>
+      </nav>
     </header>
 
-    
+    <section class="reSolve">
+      <p>Powered by Starknet Re{Solve} Hackathon</p>
+    </section>
+
     <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video" poster="assets/hero-fallback.jpg">
-            <source src="assets/4778408_Forest_Fog_3840x2160.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <img src="assets/Blue moonS.svg" alt="BlueMoon Large Logo" class="hero-logo">
-            <h1><span class="blue" id="blue-text"></span><span class="moon" id="moon-text"></span></h1>
-            <p><span id="typing-text"></span><span class="typing-cursor">|</span></p>
-            <button id="play-audio-btn" style="display: none;">Play Music</button>
-        </div>
-        <div class="firefly-container">
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-            <div class="firefly"></div>
-        </div>
-        <div class="rain-container">
-            <div class="rain-drop"></div>
-            <div class="rain-drop"></div>
-            <div class="rain-drop"></div>
-            <div class="rain-drop"></div>
-            <div class="rain-drop"></div>
-            <div class="rain-drop"></div>
-            <div class="rain-drop"></div>
-            <div class="rain-drop"></div>
-        </div>
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="hero-video"
+        poster="assets/hero-fallback.jpg"
+      >
+        <source src="assets/Low0_Moon_Night_1920x1080.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <img
+          src="assets/Blue moonS.svg"
+          alt="BlueMoon Large Logo"
+          class="hero-logo"
+          id="hero-logo"
+        />
+        <h1>
+          <span class="blue" id="blue-text"></span
+          ><span class="moon" id="moon-text"></span>
+        </h1>
+        <p>
+          <span id="typing-text"></span><span class="typing-cursor">|</span>
+        </p>
+      </div>
+      <div class="firefly-container">
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+      </div>
+      <div class="rain-container">
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+      </div>
     </section>
 
     <section class="about" id="about">
-        <div class="about-container">
-            <img src="assets/coin 1.png" alt="About BlueMoon" class="about-icon">
-            <div class="about-text">
-                <h2><span id="about-heading-typing"></span><span class="typing-cursor-about">|</span></h2>
-                <div class="about-paragraphs">
-                    <p><span id="about-p1-typing"></span></p>
-                    <p><span id="about-p2-typing"></span></p>
-                    <p><span id="about-p3-typing"></span></p>
-                </div>
+      <div class="about-container">
+        <img src="assets/coin 1.png" alt="About BlueMoon" class="about-icon" />
+        <div class="about-text">
+          <h2>
+            <span id="about-heading-typing"></span
+            ><span class="typing-cursor-about"></span>
+          </h2>
+          <div class="about-paragraphs">
+            <p><span id="about-p1-typing"></span></p>
+            <p><span id="about-p2-typing"></span></p>
+            <p><span id="about-p3-typing"></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="Logos"> 
+        <div>
+            <div class="logo-grid">
+            <div class="logo-item">
+            <img src="assets/SN-Linear-Flat colour - On dark bg.png" alt="Starknet Logo" />
+            </div>
+            <div class="logo-item">
+            <img src="assets//BM Linear Logo Blue.png" alt="Re{Solve} Logo" />
+            </div>
+            <div class="logo-item">
+            <img src="assets/SD Linear.png" alt="ETHGlobal Logo" />
             </div>
         </div>
     </section>
-
-    <section class="spooky-moon">
-        <img src="assets/Blue moon. logopng.png" alt="Spooky Moon" class="spooky-moon-image">
-    </section>
-
 
     <section class="team" id="team">
-        <h2>Meet the team</h2>
-        <div class="team-grid">
-            <div class="team-card">
-                <img src="assets/unnamed.jpg" alt="Team Member">
-                <div class="team-info">
-                    <p class="name">Alifo Johnson Emeka</p>
-                    <p class="role">Team Lead </p>
-                </div>
-            </div>
-            <div class="team-card">
-                <img src="assets/IMG-20250825-WA0029.jpg" alt="Team Member">
-                <div class="team-info">
-                    <p class="name">Chukwuma Blessing Chidinmma</p>
-                    <p class="role">Co-Team Lead</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <img src="assets/X_PFP.jpeg" alt="Team Member">
-                <div class="team-info">
-                    <p class="name">Obiakor Macben Chidiebere</p>
-                    <p class="role">Backend Dev</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <img src="assets/IMG-20250825-WA0028.jpg" alt="Team Member">
-                <div class="team-info">
-                    <p class="name">Tochukwu Nwosa</p>
-                    <p class="role">Frontend Dev</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <img src="assets/member5.jpg" alt="Team Member">
-                <div class="team-info">
-                    <p class="name">Odionyekachukwu Kaosiso </p>
-                    <p class="role">Role</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <img src="assets/member6.jpg" alt="Team Member">
-                <div class="team-info">
-                    <p class="name">Kennedy Simon </p>
-                    <p class="role">Role</p>
-                </div>
-            </div>
+      <h2>Meet the team</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="assets/unnamed.jpg" alt="Team Member" />
+          <div class="team-info">
+            <p class="name">Alifo Johnson Emeka</p>
+            <p class="role">Team Lead</p>
+          </div>
         </div>
+        <div class="team-card">
+          <img src="assets/IMG-20250825-WA0029.jpg" alt="Team Member" />
+          <div class="team-info">
+            <p class="name">Chukwuma Blessing Chidinmma</p>
+            <p class="role">Co-Team Lead</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="assets/X_PFP.jpeg" alt="Team Member" />
+          <div class="team-info">
+            <p class="name">Obiakor Macben Chidiebere</p>
+            <p class="role">Backend Dev</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="assets/IMG-20250825-WA0028.jpg" alt="Team Member" />
+          <div class="team-info">
+            <p class="name">Tochukwu Nwosa</p>
+            <p class="role">Frontend Dev</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="assets/IMG-20250901-WA0000.jpg" alt="Team Member" />
+          <div class="team-info">
+            <p class="name">Odionyekachukwu Kaosiso</p>
+            <p class="role">Full Stack/Tech Writer</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="assets/IMG-20250826-WA0010(1).jpg" alt="Team Member" />
+          <div class="team-info">
+            <p class="name">Kennedy Simon</p>
+            <p class="role">Frontend Dev</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <footer id="contact">
-        <p>&copy; 2025 BlueMoon. All rights reserved.</p>
+      <div class="footer-container">
+        <div class="footer-links">
+          <h3>Stay Connected</h3>
+          <ul>
+            <li>
+              <a
+                href="mailto:teambluemoon.co@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fas fa-envelope"></i>
+                <span>Email Us</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/channel/your-youtube-channel"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-youtube"></i>
+                <span>Blue Moon - YouTube</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://x.com/team__bluemoon"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-x-twitter"></i>
+                <span>Blue Moon (@team__bluemoon) / X</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <p class="copyright">&copy; 2025 BlueMoon. All rights reserved.</p>
+      </div>
     </footer>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

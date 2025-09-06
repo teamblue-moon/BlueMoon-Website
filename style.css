@@ -1,4 +1,10 @@
-/* Reset & Base */
+/* Base Styles */
+:root {
+  --blue-light: #4bb6ff;
+  --blue-dark: #020b14;
+  --blue-darker: #01070d;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,18 +13,19 @@
 
 body {
   font-family: monospace, Arial, sans-serif;
-  background-color: #020b14;
+  background-color: var(--blue-dark);
   color: #fff;
   line-height: 1.6;
   transition: background 0.3s, color 0.3s;
-  padding-top: 60px;
+  overflow-x: hidden;
+  /* Prevents horizontal scroll from animations */
 }
 
 /* Navbar */
 header {
-  background: #01070d;
-  padding: 1rem 2rem;
-  position: fixed;
+  background: var(--blue-darker);
+  padding: 1rem 1.5rem;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -27,16 +34,27 @@ header {
 
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centralize items in the navbar */
   align-items: center;
-  gap: 2rem;
-}
+  }
+
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+  }
 
 .logo {
   font-weight: bold;
   display: flex;
   align-items: center;
   font-family: "Orbitron", sans-serif;
+  font-size: 1.5rem;
+  color: var(--blue-light);
+  position: absolute; /* Position the logo absolutely */
+  left: 1.5rem; /* Align to the left */
 }
 
 .logo img {
@@ -44,15 +62,11 @@ header {
   margin-right: 8px;
 }
 
-.logo span {
-  font-weight: bold;
-  color: #4bb6ff;
-}
-
 .nav-links {
   display: flex;
   gap: 1.5rem;
   list-style: none;
+  z-index: 5; /* Ensure links are on top of other elements */
 }
 
 .nav-links a {
@@ -63,30 +77,41 @@ header {
 }
 
 .nav-links a:hover {
-  color: #4bb6ff;
+  color: var(--blue-light);
   text-decoration: underline;
-}
-
-.nav-links a:active {
-  color: #4bb6ff;
 }
 
 .hamburger {
   display: none;
+  /* Hidden on desktop */
   font-size: 1.5rem;
   cursor: pointer;
+  z-index: 20;
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
+  position: absolute; 
+  right: 1.5rem; 
 }
 
 /* Hero Section */
+.reSolve {
+  color: #aaa;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #333;
+}
+
 .hero {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-video {
@@ -97,7 +122,6 @@ header {
   height: 100%;
   object-fit: cover;
   z-index: -1;
-  will-change: transform;
 }
 
 .hero-overlay {
@@ -111,10 +135,6 @@ header {
 }
 
 .hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
   color: #fff;
   z-index: 1;
@@ -124,18 +144,39 @@ header {
 .hero-logo {
   width: 100px;
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+  transition: filter 0.5s ease-in-out;
+}
+
+/* Animation for the hero logo */
+.logo-glow-active {
+  animation: logo-glow 1.5s infinite alternate;
+}
+
+@keyframes logo-glow {
+  from {
+    filter: drop-shadow(0 0 5px var(--blue-light)) drop-shadow(0 0 10px var(--blue-light));
+  }
+
+  to {
+    filter: drop-shadow(0 0 20px var(--blue-light)) drop-shadow(0 0 40px var(--blue-light));
+  }
 }
 
 .hero h1 {
   font-family: "Orbitron", sans-serif;
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: clamp(4rem, 8vw, 8rem);
   font-weight: 700;
   text-transform: uppercase;
+  line-height: 80%;
   letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .hero .blue {
-  color: #4bb6ff;
+  color: var(--blue-light);
   text-shadow: 0 0 15px rgba(75, 182, 255, 0.6);
 }
 
@@ -146,11 +187,13 @@ header {
 }
 
 @keyframes h1Blink {
+
   0%,
   100% {
-    color: #4bb6ff;
+    color: var(--blue-light);
     text-shadow: 0 0 15px rgba(75, 182, 255, 0.6);
   }
+
   50% {
     color: #fff;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
@@ -169,6 +212,12 @@ header {
   margin-top: 1rem;
   font-size: 1.2rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Typing cursor animation */
+.typing-cursor,
+.typing-cursor-about {
+  animation: blink 0.7s infinite;
 }
 
 /* Firefly animation */
@@ -198,56 +247,67 @@ header {
   left: 20%;
   animation-delay: 0s;
 }
+
 .firefly:nth-child(2) {
   top: 40%;
   left: 60%;
   animation-delay: 5s;
 }
+
 .firefly:nth-child(3) {
   top: 70%;
   left: 80%;
   animation-delay: 10s;
 }
+
 .firefly:nth-child(4) {
   top: 80%;
   left: 30%;
   animation-delay: 15s;
 }
+
 .firefly:nth-child(5) {
   top: 25%;
   left: 5%;
   animation-delay: 2s;
 }
+
 .firefly:nth-child(6) {
   top: 55%;
   left: 90%;
   animation-delay: 7s;
 }
+
 .firefly:nth-child(7) {
   top: 15%;
   left: 75%;
   animation-delay: 12s;
 }
+
 .firefly:nth-child(8) {
   top: 95%;
   left: 45%;
   animation-delay: 17s;
 }
+
 .firefly:nth-child(9) {
   top: 5%;
   left: 50%;
   animation-delay: 3s;
 }
+
 .firefly:nth-child(10) {
   top: 65%;
   left: 15%;
   animation-delay: 8s;
 }
+
 .firefly:nth-child(11) {
   top: 30%;
   left: 95%;
   animation-delay: 13s;
 }
+
 .firefly:nth-child(12) {
   top: 85%;
   left: 5%;
@@ -259,26 +319,32 @@ header {
     transform: translate(0, 0);
     opacity: 0;
   }
+
   10% {
     transform: translate(20px, -50px);
     opacity: 1;
   }
+
   20% {
     transform: translate(50px, -20px);
     opacity: 0.8;
   }
+
   30% {
     transform: translate(100px, 30px);
     opacity: 1;
   }
+
   40% {
     transform: translate(150px, -40px);
     opacity: 0.6;
   }
+
   50% {
     transform: translate(200px, 50px);
     opacity: 0;
   }
+
   100% {
     transform: translate(0, 0);
     opacity: 0;
@@ -310,36 +376,43 @@ header {
   animation-delay: 0.5s;
   animation-duration: 2.2s;
 }
+
 .rain-drop:nth-child(2) {
   left: 30%;
   animation-delay: 1.2s;
   animation-duration: 1.8s;
 }
+
 .rain-drop:nth-child(3) {
   left: 50%;
   animation-delay: 0.1s;
   animation-duration: 2.5s;
 }
+
 .rain-drop:nth-child(4) {
   left: 70%;
   animation-delay: 1.8s;
   animation-duration: 2.1s;
 }
+
 .rain-drop:nth-child(5) {
   left: 90%;
   animation-delay: 0.8s;
   animation-duration: 1.9s;
 }
+
 .rain-drop:nth-child(6) {
   left: 25%;
   animation-delay: 1.5s;
   animation-duration: 2.3s;
 }
+
 .rain-drop:nth-child(7) {
   left: 65%;
   animation-delay: 0.4s;
   animation-duration: 1.7s;
 }
+
 .rain-drop:nth-child(8) {
   left: 85%;
   animation-delay: 0.9s;
@@ -350,6 +423,7 @@ header {
   from {
     transform: translateY(-100vh);
   }
+
   to {
     transform: translateY(100vh);
   }
@@ -357,8 +431,8 @@ header {
 
 /* About Section */
 .about {
-  padding: 3rem 2rem;
-  background-color: #020b14;
+  padding: 0rem 2rem 0rem 2rem;
+  background-color: var(--blue-dark);
 }
 
 .about-container {
@@ -372,12 +446,12 @@ header {
 .about-icon {
   width: 120px;
   animation: rotate 4s linear infinite;
-  filter: drop-shadow(0 0 10px #4bb6ff) drop-shadow(0 0 20px #4bb6ff);
+  filter: drop-shadow(0 0 10px var(--blue-light)) drop-shadow(0 0 20px var(--blue-light));
 }
 
 .about-text h2 {
   margin-bottom: 1rem;
-  color: #4bb6ff;
+  color: var(--blue-light);
 }
 
 .about-paragraphs p {
@@ -393,65 +467,70 @@ header {
   display: inline-block;
   width: 2px;
   height: 1.2em;
-  background-color: #4bb6ff;
-  animation: blink 0.7s infinite;
+  background-color: var(--blue-light);
   vertical-align: middle;
 }
 
-/* Spooky moon image */
-.spooky-moon {
-  padding: 3rem 2rem;
+/* Logos Section */
+.Logos {
+  padding: 0rem 3rem 2rem;
   text-align: center;
+  overflow: hidden; /* Hide overflow for the animation */
+  position: relative;
+  width: 100%;
 }
 
-.spooky-moon-image {
-  display: block;
-  width: 200px;
-  height: auto;
-  border-radius: 50%;
-  margin: 0 auto;
-  animation: blink-moon 2s infinite alternate;
-  animation: blink-moon 2s infinite alternate, move-moon 15s linear infinite;
+.logo-grid {
+  display: flex;
+  justify-content: flex-start; /* Align logos to the left */
+  align-items: center;
+  /* Use a much larger width to prevent jumps */
+  width: max-content;
+  animation: logo-scroll 30s linear infinite; /* Animate the whole grid */
   position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  gap: 2rem; /* Maintain gap between logos */
 }
 
-@keyframes blink-moon {
-  from {
-    opacity: 0.8;
-  }
-  to {
-    opacity: 1;
-  }
+.logo-item {
+  flex-shrink: 0;
+  width: 150px;
 }
 
-/* Horizontal movement animation */
-@keyframes move-moon {
-  from {
-    transform: translateX(100vw);
-  }
-  to {
-    transform: translateX(-100vw);
-  }
+.logo-item img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%) opacity(50%);
+  transition: filter 0.3s ease;
 }
 
-@keyframes blink-moon {
-  from {
-    opacity: 0.8;
+.logo-item img:hover {
+  filter: grayscale(0%) opacity(100%);
+}
+
+@keyframes logo-scroll {
+  0% {
+    /* Start with the grid off-screen to the right, using calc to prevent a jump */
+    transform: translateX(100vw) translateY(-50%);
   }
-  to {
-    opacity: 1;
+
+  100% {
+    /* Move the grid completely off-screen to the left */
+    transform: translateX(calc(-100% - 2rem)) translateY(-50%);
   }
 }
 
 /* Team Section */
 .team {
-  padding: 3rem 2rem;
+  padding: 1rem 2rem;
   text-align: center;
 }
 
 .team h2 {
   margin-bottom: 2rem;
-  color: #4bb6ff;
+  color: var(--blue-light);
 }
 
 .team-grid {
@@ -479,7 +558,7 @@ header {
 }
 
 .team-card:hover img {
-  filter: grayscale(0%); /* Removes the grayscale filter on hover */
+  filter: grayscale(0%);
 }
 
 .team-info {
@@ -495,54 +574,60 @@ header {
   font-size: 0.9rem;
 }
 
-.team {
-  padding: 3rem 2rem;
-  text-align: center;
-}
-
-.team h2 {
-  margin-bottom: 2rem;
-  color: #4bb6ff;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.team-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  text-align: center;
-  color: #000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.team-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.team-info .name {
-  font-weight: bold;
-}
-
-.team-info .role {
-  color: #666;
-  font-size: 0.9rem;
-}
-
 /* Footer */
 footer {
-  background: #01070d;
-  text-align: center;
-  padding: 1rem;
+  background: var(--blue-darker);
+  padding: 2rem;
   margin-top: 2rem;
   font-size: 0.9rem;
   color: #aaa;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-links h3 {
+  color: var(--blue-light);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: var(--blue-light);
+}
+
+.footer-links a i {
+  font-size: 1rem;
+  width: 20px;
+}
+
+.copyright {
+  margin-top: 1rem;
+  opacity: 0.8;
 }
 
 /* Toggle Button */
@@ -571,7 +656,7 @@ body.light footer {
   background: #ffffff;
   color: #333;
   border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-bottom: none;
 }
 
 body.light .nav-links a {
@@ -595,59 +680,68 @@ body.light #themeToggle {
   color: #111;
 }
 
-/* Responsive Navbar */
+body.light .footer-links a {
+  color: #111;
+}
+
+body.light .footer-links a:hover {
+  color: #0077ff;
+}
+
+body.light .footer-links h3 {
+  color: #0077ff;
+}
+
+/* Mobile Viewports */
 @media (max-width: 768px) {
+  .navbar {
+    justify-content: space-between;
+  }
+  .logo {
+    position: static;
+    left: auto;
+  }
   .nav-links {
     display: none;
     flex-direction: column;
-    background: #01070d;
+    background: var(--blue-darker);
     position: absolute;
     top: 60px;
-    right: 20px;
+    right: 0;
     padding: 1rem;
     border-radius: 8px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    /* Reset flex-grow for mobile */
+    flex-grow: unset;
+    justify-content: flex-start;
   }
 
   .nav-links.active {
     display: flex;
+    transform: translateX(0);
   }
 
   .hamburger {
     display: block;
+    /* Hamburger is visible on mobile */
+  }
+
+  .nav-actions {
+    position: static;
+    right: auto;
   }
 }
 
-/* Desktop-specific adjustments */
-@media (min-width: 1024px) {
-  .hero-logo {
-    width: 150px;
-  }
-
-  .hero h1 {
-    font-size: 8rem;
-  }
-
-  .hero p {
-    font-size: 1.5rem;
-  }
-
-  .about-container {
-    flex-direction: row;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .about-text {
-    text-align: left;
-  }
-}
-
+/* Mobile H1 stacking for "Blue Moon" */
 @media (max-width: 600px) {
-  .spooky-moon-image {
-    max-width: 95%;
+  .hero h1 {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 
+/* General Animations */
 @keyframes blink {
   50% {
     opacity: 0;
@@ -658,6 +752,7 @@ body.light #themeToggle {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

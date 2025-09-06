@@ -1,171 +1,150 @@
-// Mobile menu toggle
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.getElementById("navLinks");
+// A single object to manage all UI elements
+const UI = {
+  // Mobile menu toggle
+  hamburger: document.getElementById("hamburger"),
+  navLinks: document.getElementById("navLinks"),
 
-hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-});
-
-// Theme toggle
-const themeToggle = document.getElementById("themeToggle");
-const body = document.body;
-
-if (localStorage.getItem("theme") === "light") {
-    body.classList.add("light");
-    themeToggle.textContent = "☀️";
-}
-
-themeToggle.addEventListener("click", () => {
-    body.classList.toggle("light");
-
-    if (body.classList.contains("light")) {
-        themeToggle.textContent = "☀️";
-        localStorage.setItem("theme", "light");
-    } else {
-        themeToggle.textContent = "🌙";
-        localStorage.setItem("theme", "dark");
+  setupMenuToggle() {
+    if (this.hamburger && this.navLinks) {
+      this.hamburger.addEventListener("click", () => {
+        this.navLinks.classList.toggle("active");
+      });
     }
-});
+  },
 
+  // Typing animation for H1 "BlueMoon" title
+  h1Container: document.querySelector(".hero h1"),
+  heroLogo: document.getElementById("hero-logo"),
+  blueTextElement: document.getElementById("blue-text"),
+  moonTextElement: document.getElementById("moon-text"),
 
-// Typing animation for H1 "BlueMoon" title
-const h1Container = document.querySelector(".hero h1");
-const blueTextElement = document.getElementById("blue-text");
-const moonTextElement = document.getElementById("moon-text");
+  h1BluePart: "Blue",
+  h1MoonPart: "Moon",
 
-const h1BluePart = "Blue";
-const h1MoonPart = "Moon";
-
-function typeH1() {
+  typeH1() {
     let charIndex = 0;
     const typeInterval = setInterval(() => {
-        if (charIndex < h1BluePart.length) {
-            blueTextElement.textContent += h1BluePart.charAt(charIndex);
-        } else if (charIndex < (h1BluePart.length + h1MoonPart.length)) {
-            moonTextElement.textContent += h1MoonPart.charAt(charIndex - h1BluePart.length);
-        }
+      if (charIndex < this.h1BluePart.length) {
+        this.blueTextElement.textContent += this.h1BluePart.charAt(charIndex);
+      } else if (charIndex < (this.h1BluePart.length + this.h1MoonPart.length)) {
+        this.moonTextElement.textContent += this.h1MoonPart.charAt(charIndex - this.h1BluePart.length);
+      }
 
-        charIndex++;
+      charIndex++;
 
-        if (charIndex > (h1BluePart.length + h1MoonPart.length)) {
-            clearInterval(typeInterval);
-            h1Container.classList.add("color-swap-active");
-        }
+      if (charIndex > (this.h1BluePart.length + this.h1MoonPart.length)) {
+        clearInterval(typeInterval);
+        this.h1Container.classList.add("color-swap-active");
+        this.heroLogo.classList.add("logo-glow-active");
+      }
     }, 150);
-}
+  },
 
-typeH1();
+  // Typing animation for hero text
+  typingTextElement: document.getElementById("typing-text"),
+  heroTextToType: "We build Stark naked",
+  heroTextIndex: 0,
 
-// Typing animation for hero text
-const typingTextElement = document.getElementById("typing-text");
-const textToType = "We build Stark naked";
-let characterIndex = 0;
-
-function typeText() {
-    if (characterIndex < textToType.length) {
-        typingTextElement.textContent += textToType.charAt(characterIndex);
-        characterIndex++;
-        setTimeout(typeText, 200);
+  typeHeroText() {
+    if (this.heroTextIndex < this.heroTextToType.length) {
+      this.typingTextElement.textContent += this.heroTextToType.charAt(this.heroTextIndex);
+      this.heroTextIndex++;
+      setTimeout(() => this.typeHeroText(), 200);
     }
-}
+  },
 
-// NEW: Wrapper function to start and repeat the typing animation
-function startHeroTypingAnimation() {
-    typingTextElement.textContent = ""; // Clear the text
-    characterIndex = 0;                 // Reset the character index
-    typeText();                         // Start the typing animation
-}
+  startHeroTypingAnimation() {
+    if (this.typingTextElement) {
+      this.typingTextElement.textContent = "";
+      this.heroTextIndex = 0;
+      this.typeHeroText();
+    }
+  },
 
-// NEW: Run the animation once, then start a timer to repeat it
-startHeroTypingAnimation();
-setInterval(startHeroTypingAnimation, 10000); // Repeat every 10 seconds (10000 ms)
-
-
-// Set the playback speed of the background video
-window.addEventListener('load', () => {
-    const heroVideo = document.querySelector('.hero-video');
-    if (heroVideo) {
+  // Set the playback speed of the background video
+  setVideoSpeed() {
+    window.addEventListener('load', () => {
+      const heroVideo = document.querySelector('.hero-video');
+      if (heroVideo) {
         heroVideo.playbackRate = 1.2;
-    }
-});
+      }
+    });
+  },
 
+  // Fireflies follow the mouse cursor
+  fireflies: document.querySelectorAll('.firefly'),
 
-// Make fireflies follow the mouse cursor
-const fireflies = document.querySelectorAll('.firefly');
+  setupFireflyFollow() {
+    document.addEventListener('mousemove', (e) => {
+      const {
+        clientX: mouseX,
+        clientY: mouseY
+      } = e;
 
-document.addEventListener('mousemove', (e) => {
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-
-    fireflies.forEach((firefly, index) => {
+      this.fireflies.forEach((firefly, index) => {
         setTimeout(() => {
-            const offsetX = Math.sin(index * 0.5) * 20;
-            const offsetY = Math.cos(index * 0.5) * 20;
+          const offsetX = Math.sin(index * 0.5) * 20;
+          const offsetY = Math.cos(index * 0.5) * 20;
 
-            firefly.style.left = `${mouseX + offsetX}px`;
-            firefly.style.top = `${mouseY + offsetY}px`;
+          firefly.style.left = `${mouseX + offsetX}px`;
+          firefly.style.top = `${mouseY + offsetY}px`;
         }, index * 50);
+      });
     });
-});
+  },
 
-
-// Typing animation for the About Us section
-const aboutSection = document.getElementById("about");
-const aboutHeadingElement = document.getElementById("about-heading-typing");
-const aboutP1Element = document.getElementById("about-p1-typing");
-const aboutP2Element = document.getElementById("about-p2-typing");
-const aboutP3Element = document.getElementById("about-p3-typing");
-
-const aboutHeadingText = "About Us";
-const aboutP1Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-const aboutP2Text = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.";
-const aboutP3Text = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.";
-
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-function typeContent(element, text, delay) {
-    let i = 0;
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, 20);
-        }
-    }
-    setTimeout(type, delay);
-}
-
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
+  // Typing animation for the About Us section
+  aboutSection: document.getElementById("about"),
+  aboutHeadingElement: document.getElementById("about-heading-typing"),
+  aboutP1Element: document.getElementById("about-p1-typing"),
+  aboutText: {
+    heading: "About Us",
+    p1: "Birthed by Anambra Web3 Starknet Class. BlueMoon a digital testament to our team's creative audacity and technical swagger on Starknet. We've bottled the chaos of late-night coding and the thrill of innovation into a sleek, interactive experience. Welcome to the future—it's less about the destination and more about how we got there (with a lot of caffeine).",
+  },
+  
+  typeAboutSection() {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-            typeContent(aboutHeadingElement, aboutHeadingText, 200);
+          this.typeContent(this.aboutHeadingElement, this.aboutText.heading, 200);
+          
+          setTimeout(() => {
+            this.typeContent(this.aboutP1Element, this.aboutText.p1, 0);
+          }, this.aboutText.heading.length * 20 + 300);
 
-            setTimeout(() => {
-                typeContent(aboutP1Element, aboutP1Text, 0);
-            }, aboutHeadingText.length * 20 + 300);
-
-            setTimeout(() => {
-                typeContent(aboutP2Element, aboutP2Text, 0);
-            }, (aboutHeadingText.length * 20) + (aboutP1Text.length * 20) + 600);
-
-            setTimeout(() => {
-                typeContent(aboutP3Element, aboutP3Text, 0);
-            }, (aboutHeadingText.length * 20) + (aboutP1Text.length * 20) + (aboutP2Text.length * 20) + 900);
-
-            observer.unobserve(aboutSection);
+          observer.unobserve(this.aboutSection);
         }
+      });
+    }, {
+      threshold: 0.5
     });
-}, {
-    rootMargin: '0px',
-    threshold: 0.5
-});
 
-observer.observe(aboutSection);
+    if (this.aboutSection) {
+      observer.observe(this.aboutSection);
+    }
+  },
+
+  typeContent(element, text, delay) {
+    if (!element || !text) return;
+    let i = 0;
+    const type = () => {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 20);
+      }
+    };
+    setTimeout(type, delay);
+  },
+};
+
+// Initialize all functionality
+document.addEventListener("DOMContentLoaded", () => {
+  UI.setupMenuToggle();
+  UI.typeH1();
+  UI.startHeroTypingAnimation();
+  setInterval(() => UI.startHeroTypingAnimation(), 10000);
+  UI.setVideoSpeed();
+  UI.setupFireflyFollow();
+  UI.typeAboutSection();
+});
